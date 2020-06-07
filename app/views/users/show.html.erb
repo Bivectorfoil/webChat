@@ -1,0 +1,7 @@
+<%= link_to "users home page", "/users" %>
+<% if flash[:success] %>
+    <div class="notice"><%= flash[:success] %></div>
+<% end %>
+<p>Hi everyone</p>
+<p>My name is <%= @user.username %></p>
+<%= link_to 'log out', "/logout", method: "delete" %>

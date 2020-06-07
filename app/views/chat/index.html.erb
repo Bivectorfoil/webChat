@@ -1,0 +1,8 @@
+<h1>Chat room home page</h1>
+
+<% if logged_in? %>
+    <p>i am loggin</p>
+    <%= link_to 'log out', "/logout", method: "delete" %>
+<% else %>
+    <%= link_to 'Sign up', register_path(:new) %>
+<% end %>
