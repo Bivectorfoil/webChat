@@ -2,7 +2,16 @@
 
 <% if logged_in? %>
     <p>i am loggin</p>
+    <p>i am <%= current_user.username %></p>
     <%= link_to 'log out', "/logout", method: "delete" %>
 <% else %>
     <%= link_to 'Sign up', register_path(:new) %>
 <% end %>
+
+<div id="messages">
+</div>
+
+<form>
+  <label>畅所欲言：</label><br>
+  <input type="text" data-behavior="room_speaker">
+</form>
