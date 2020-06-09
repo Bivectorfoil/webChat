@@ -3,15 +3,19 @@
 <% if logged_in? %>
     <p>i am loggin</p>
     <p>i am <%= current_user.username %></p>
+    <%= form_for(:chat, url: "chat", remote: true) do |form| %>
+      <div class="field">
+        <%= form.label :畅所欲言! %><br>
+        <%= form.text_field :message %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+    <br>
     <%= link_to 'log out', "/logout", method: "delete" %>
 <% else %>
     <%= link_to 'Sign up', register_path(:new) %>
+    <p>Already has an account? <%= link_to "Log in", "/login" %></p>
 <% end %>
-
-<div id="messages">
-</div>
-
-<form>
-  <label>畅所欲言：</label><br>
-  <input type="text" data-behavior="room_speaker">
-</form>

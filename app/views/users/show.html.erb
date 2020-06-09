@@ -4,4 +4,10 @@
 <% end %>
 <p>Hi everyone</p>
 <p>My name is <%= @user.username %></p>
-<%= link_to 'log out', "/logout", method: "delete" %>
+<% if current_user.id == @user_id %>
+    <%= link_to 'Join the chat!', "/" %><br>
+    <%= link_to 'log out', "/logout", method: "delete" %>
+<% else %>
+    <%= link_to 'Login to join the chat!', "/login" %>
+<% end %>
+
