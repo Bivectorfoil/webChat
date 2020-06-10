@@ -1,13 +1,16 @@
-<h1>Chat room home page</h1>
+<head>
+    <script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<h1>Chat room index page</h1>
 
 <% if logged_in? %>
-    <p>i am loggin</p>
-    <p>i am <%= current_user.username %></p>
-    <%= form_for(:chat, url: "chat", remote: true) do |form| %>
+    <p>I am <%= current_user.username %></p>
+    <%= form_for(@message, url: "/chat", remote: true) do |form| %>
       <div class="field">
         <%= form.label :畅所欲言! %><br>
-        <%= form.text_field :message %>
+        <%= form.text_field :body %>
       </div>
+      <p>content <%= :body %></p>
 
       <div class="actions">
         <%= form.submit %>
@@ -19,3 +22,7 @@
     <%= link_to 'Sign up', register_path(:new) %>
     <p>Already has an account? <%= link_to "Log in", "/login" %></p>
 <% end %>
+
+<div id="msg">
+<p>Here is what we discuss</p>
+</div>
