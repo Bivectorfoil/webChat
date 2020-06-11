@@ -1,4 +1,5 @@
 class ChatController < ApplicationController
+    include SessionsHelper
     def index
         @messages = Message.all
         @message = Message.new
@@ -17,6 +18,7 @@ class ChatController < ApplicationController
     end
     def create
         @message = Message.create(msg_params)
+        @message.user_id = current_user.id
         if @message.save
             puts "message save"
             ActionCable.server.broadcast "chat_channel",
