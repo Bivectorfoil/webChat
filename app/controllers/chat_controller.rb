@@ -1,6 +1,7 @@
 class ChatController < ApplicationController
     include SessionsHelper
     def index
+        @users = User.all
         @messages = Message.all
         @message = Message.new
     end
@@ -19,10 +20,12 @@ class ChatController < ApplicationController
     def create
         @message = Message.create(msg_params)
         @message.user_id = current_user.id
+        @username = User.find(current_user.id).username
         if @message.save
             puts "message save"
             ActionCable.server.broadcast "chat_channel",
-            content: @message.body
+                content: [@message, @username]
+                #content: @message.body 
         else
             puts "message save failed"
         end

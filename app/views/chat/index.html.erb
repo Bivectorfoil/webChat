@@ -23,6 +23,11 @@
     <p>Already has an account? <%= link_to "Log in", "/login" %></p>
 <% end %>
 
-<div id="msg">
-<p>Here is what we discuss</p>
+<p>below is what we discuss</p>
+<div id="messages">
+	<% @messages.each do |msg| %>
+		<div id="msg">
+			<p><%= @users.find(msg.user_id).username %>:  <%= msg.body %>
+		</div>
+	<% end %>
 </div>

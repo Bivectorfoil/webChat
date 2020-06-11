@@ -13,6 +13,8 @@ consumer.subscriptions.create("ChatChannel", {
     // Called when there's incoming data on the websocket for this channel
     console.log("Recieving:")
     console.log(data.content)
-    $('#msg').append('<div class="message"> '+ data.content + '</div>')
+    console.log(data.content[0].body)
+    console.log(data.content[1])
+    $('#messages').append('<div id="msg"><p>  ' + data.content[1] + ': ' + data.content[0].body + '</p></div>')
   }
 });
