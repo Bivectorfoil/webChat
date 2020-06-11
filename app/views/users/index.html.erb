@@ -1,12 +1,16 @@
 <h1>I am user index page</h1>
     <table>
+        <% if current_user %>
         <tr>
-        <th>我是</th>
+        <th>我是 <%= current_user.username %></th>
         </tr>
+        <% end %>
+        
     <% @users.each do |u| %>
     <tr>
-      <td><%= u.username %></td>
+      <td><%= u.username %> </td>
       <td><%= link_to 'Show', user_path(u) %></td>
+      <td><%= (!current_user.nil? and current_user.id == u.id) ? ' 当前登录用户':'' %> </td>
     </tr>
     <% end %>
     </table>

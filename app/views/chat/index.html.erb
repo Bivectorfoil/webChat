@@ -3,6 +3,8 @@
 </head>
 <h1>Chat room index page</h1>
 
+<h2><%= link_to "users home page", "/users" %></h2>
+
 <p>below is what we discuss</p>
 <div id="messages">
 	<% @messages.each do |msg| %>
@@ -12,12 +14,13 @@
 	<% end %>
 </div>
 
+<div id="chatInput">
 <% if logged_in? %>
     <p>I am <%= current_user.username %></p>
     <%= form_for(@message, url: "/chat", remote: true) do |form| %>
       <div class="field">
         <%= form.label :畅所欲言! %><br>
-        <%= form.text_field :body %>
+        <%= form.text_area :body %>
       </div>
 
       <div class="actions">
@@ -30,3 +33,4 @@
     <%= link_to 'Sign up', register_path(:new) %>
     <p>Already has an account? <%= link_to "Log in", "/login" %></p>
 <% end %>
+</div>

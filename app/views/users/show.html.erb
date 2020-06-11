@@ -4,7 +4,7 @@
 <% end %>
 <p>Hi everyone</p>
 <p>My name is <%= @user.username %></p>
-<% if current_user.id == @user_id %>
+<% if (!current_user.nil?) and (current_user.id == @user_id) %>
     <%= link_to 'Join the chat!', "/" %><br>
     <%= link_to 'log out', "/logout", method: "delete" %>
 <% else %>
