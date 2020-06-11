@@ -16,5 +16,6 @@ consumer.subscriptions.create("ChatChannel", {
     console.log(data.content[0].body)
     console.log(data.content[1])
     $('#messages').append('<div id="msg"><p>  ' + data.content[1] + ': ' + data.content[0].body + '</p></div>')
+    $('#message_body').val('');
   }
 });
