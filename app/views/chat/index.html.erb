@@ -1,20 +1,30 @@
 <head>
-    <script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>
+	<!--<script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.js"></script>-->
+	<script src="../main.js"></script>
 </head>
 <h1>Chat room index page</h1>
 
 <h2><%= link_to "users home page", "/users" %></h2>
 
 <p>below is what we discuss</p>
-<div id="messages">
+<div id="msgbox" style="
+    height: 600px;
+    margin: 0;
+    padding: 10px 0 1px;
+">
+<div id="messages" style="
+    height: 100%;
+    overflow-y: scroll;
+">
 	<% @messages.each do |msg| %>
 		<div id="msg">
 			<p><%= @users.find(msg.user_id).username %>:  <%= msg.body %>
 		</div>
 	<% end %>
 </div>
+</div>
 
-<div id="chatInput">
+<div id="chatInput" style="margin-bottom: 30px;position: fixed;bottom: 0;left: 0;height: 150px;width: 100%;background: #f6f6f6;/* color: #a1a1a1; */padding: 10px;">
 <% if logged_in? %>
     <p>I am <%= current_user.username %></p>
     <%= form_for(@message, url: "/chat", remote: true) do |form| %>
